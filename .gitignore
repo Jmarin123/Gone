@@ -1,1 +1,4 @@
 gone
+*.o
+.vscode
+.txt

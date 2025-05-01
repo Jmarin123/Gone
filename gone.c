@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "util.h"
+#include "utility.h"
 
 
 int main(int argc, char** argv) {
@@ -8,6 +8,8 @@ int main(int argc, char** argv) {
     char* buffer = 0;
     long length;
     // Todo, get some safety checks for the file extension
+    int result = EndsWith(argv[1], ".test");
+    if (result == 1) { return EXIT_FAILURE; }
 
     FILE* f = fopen(argv[1], "r");
 

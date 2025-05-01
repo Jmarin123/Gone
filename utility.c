@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <string.h>
+#include "utility.h"
 
 int EndsWith(const char *str, const char *suffix)
 {
@@ -8,5 +10,6 @@ int EndsWith(const char *str, const char *suffix)
     size_t lensuffix = strlen(suffix);
     if (lensuffix >  lenstr)
         return 0;
+    printf("%ld", lensuffix);
     return strncmp(str + lenstr - lensuffix, suffix, lensuffix) == 0;
 }
