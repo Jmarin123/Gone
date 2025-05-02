@@ -16,7 +16,7 @@ int main(int argc, char** argv) {
     if (f) {
         fseek(f, 0, SEEK_END);
         length = ftell(f);
-        fseek(f,0, SEEK_SET);
+        fseek(f, 0, SEEK_SET);
         buffer = malloc(length);
         if (buffer) {
             fread(buffer, 1, length, f);
@@ -25,7 +25,7 @@ int main(int argc, char** argv) {
     }
 
     if (buffer){
-        // Testing this stuff!
+        
     }
     return 0;
 }
