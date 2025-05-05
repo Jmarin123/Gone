@@ -5,5 +5,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "utility.h"
+#include "lexer.h"
 
 #endif

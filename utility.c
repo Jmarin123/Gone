@@ -1,9 +1,6 @@
-#include <stdio.h>
-#include <string.h>
 #include "utility.h"
 
-int EndsWith(const char *str, const char *suffix)
-{
+int ends_with(const char *str, const char *suffix) {
     if (!str || !suffix)
         return 0;
     size_t lenstr = strlen(str);
