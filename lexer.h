@@ -27,11 +27,12 @@ typedef struct Token {
 typedef struct TokenList {
     Token *tokens;
     size_t capacity;
-    size_t current_size;
+    size_t current_index;
 } TokenList;
 
-
+void init_token_list(TokenList *list);
 void create_token(const char *type, const char *value);
+
 Token *lex(const char *buffer);
 
 #endif

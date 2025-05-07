@@ -11,5 +11,7 @@ int main(int argc, char** argv) {
 
     Token *Tokens = lex(buffer);
     free(buffer);
+    //Todo: ast = parser(*Tokens)
+    //Todo: Maybe mips interpreted? Maybe byte code.
     return EXIT_SUCCESS;
 }
