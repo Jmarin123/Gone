@@ -5,7 +5,17 @@
 #include <stdlib.h>
 
 typedef enum {
-    TOKEN_EOF
+    TOKEN_SEMICOLON,
+    // TOKEN_DO,
+    // TOKEN_WHILE, Maybe set the Words value later?
+    // TOKEN_FOR,
+    TOKEN_LEFT_BRACKET,
+    TOKEN_RIGHT_BRACK,
+    TOKEN_LEFT_PARENTHESIS,
+    TOKEN_RIGHT_PARENTHESIS,
+    TOKEN_PLUS,
+    TOKEN_MINUS,
+    TOKEN_EQUAL,
 } TokenType;
 
 typedef struct Token {
@@ -14,7 +24,14 @@ typedef struct Token {
     struct Token *next;
 } Token;
 
-Token *create_token(const char *type, const char *value);
+typedef struct TokenList {
+    Token *tokens;
+    size_t capacity;
+    size_t current_size;
+} TokenList;
+
+
+void create_token(const char *type, const char *value);
 Token *lex(const char *buffer);
 
 #endif
