@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef enum {
     TOKEN_SEMICOLON,
@@ -30,9 +31,8 @@ typedef struct TokenList {
     size_t current_index;
 } TokenList;
 
-void init_token_list(TokenList *list);
+int init_token_list(TokenList *list);
 void create_token(const char *type, const char *value);
-
-Token *lex(const char *buffer);
+int lex(const char *buffer, TokenList *list);
 
 #endif

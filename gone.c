@@ -9,9 +9,16 @@ int main(int argc, char** argv) {
     char *buffer = file_to_string(argv[1]);
     if (!buffer) { return EXIT_FAILURE; }
 
-    Token *Tokens = lex(buffer);
+    // Maybe add a better name than tokens lol
+    TokenList tokens;
+    if (!lex(buffer, &tokens)){
+        free(buffer);
+        return EXIT_FAILURE;
+    }
     free(buffer);
-    //Todo: ast = parser(*Tokens)
+    free(tokens.tokens);
+    //Todo: ast = parser(&tokens)
     //Todo: Maybe mips interpreted? Maybe byte code.
+    //Todo: Free tokens value
     return EXIT_SUCCESS;
 }

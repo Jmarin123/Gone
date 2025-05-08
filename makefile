@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -std=c11 -g
-OBJ = gone.o utility.o
+OBJ = gone.o utility.o lexer.o
 TARGET = gone
 
 $(TARGET): $(OBJ)
