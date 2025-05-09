@@ -22,11 +22,21 @@ int lex(const char *buffer, TokenList *list) {
         return 0;
     }
     size_t pointer = 0;
-    size_t length = strlen(buffer);
-
-    while (pointer < length) {
-        printf("woah: %c\n", buffer[pointer]);
+    while (buffer[pointer] != '\0') {
+        if (isalpha(buffer[pointer])){
+            // Start off as a variable or some sort of reserved character
+            pointer++;
+            continue;
+        } else if (isdigit(buffer[pointer])) {
+            // Just look at it as a value
+            pointer++;
+            continue;
+        } else if (isblank(buffer[pointer])){
+            pointer++;
+            continue;   
+        }
         pointer++;
+
     }
     return 1;
 }
