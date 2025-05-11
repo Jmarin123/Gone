@@ -8,9 +8,10 @@
 
 typedef enum {
     TOKEN_SEMICOLON,
-    // TOKEN_DO,
-    // TOKEN_WHILE, Maybe set the Words value later?
-    // TOKEN_FOR,
+    TOKEN_DO,
+    TOKEN_WHILE,
+    TOKEN_FOR,
+    TOKEN_IF,
     TOKEN_LEFT_BRACKET,
     TOKEN_RIGHT_BRACK,
     TOKEN_LEFT_PARENTHESIS,
@@ -18,12 +19,12 @@ typedef enum {
     TOKEN_PLUS,
     TOKEN_MINUS,
     TOKEN_EQUAL,
+    TOKEN_VARIABLE
 } TokenType;
 
 typedef struct Token {
     TokenType type;
     char *value;
-    struct Token *next;
 } Token;
 
 typedef struct TokenList {
