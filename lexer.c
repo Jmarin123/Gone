@@ -29,6 +29,8 @@ int create_token(TokenList *list, TokenType token_type, const char *str) {
 TokenType keyword_lookup(const char *str){
     if(strcmp(str, "if") == 0) return TOKEN_IF;
     if(strcmp(str, "for") == 0) return TOKEN_FOR;
+    if(strcmp(str, "int") == 0) return TOKEN_INT;
+    if(strcmp(str, "bool") == 0) return TOKEN_BOOL;
     return TOKEN_VARIABLE;
 }
 

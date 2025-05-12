@@ -19,7 +19,9 @@ typedef enum {
     TOKEN_PLUS,
     TOKEN_MINUS,
     TOKEN_EQUAL,
-    TOKEN_VARIABLE
+    TOKEN_VARIABLE,
+    TOKEN_BOOL,
+    TOKEN_INT
 } TokenType;
 
 typedef struct Token {
@@ -34,7 +36,7 @@ typedef struct TokenList {
 } TokenList;
 
 int init_token_list(TokenList *list);
-void create_token(const char *type, const char *value);
+int create_token(TokenList *list, TokenType token_type, const char *str);
 int lex(const char *buffer, TokenList *list);
-
+int free_tokens(TokenList *list);
 #endif
