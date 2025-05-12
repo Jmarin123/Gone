@@ -34,6 +34,14 @@ TokenType keyword_lookup(const char *str){
     return TOKEN_VARIABLE;
 }
 
+int free_tokens(TokenList *list){
+    for(size_t i = 0; i < list->current_index; i++){
+        free(list->tokens[i].value);
+    }
+    free(list->tokens);
+    return 1;
+}
+
 // TokenType keynum_lookup() {
 
 // }
@@ -59,7 +67,8 @@ int lex(const char *buffer, TokenList *list) {
             memcpy(temp, &buffer[start], len);
             temp[len] = '\0';
             TokenType token = keyword_lookup(temp);
-
+            int check = create_token(list, token, temp);
+            if (!check) return 0;
             continue;
         } else if (isdigit(buffer[pointer])) {
             // Just look at it as a value
@@ -72,5 +81,9 @@ int lex(const char *buffer, TokenList *list) {
         pointer++;
 
     }
+    for (size_t i = 0; i < list->current_index; i++){
+        printf("Token: %s has value %d\n", list->tokens[i].value, list->tokens[i].type);
+    }
+    free_tokens(list);
     return 1;
 }

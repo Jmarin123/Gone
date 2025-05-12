@@ -16,7 +16,7 @@ int main(int argc, char** argv) {
         return EXIT_FAILURE;
     }
     free(buffer);
-    free(tokens.tokens);
+    //free(tokens.tokens);
     //Todo: ast = parser(&tokens)
     //Todo: Maybe mips interpreted? Maybe byte code.
     //Todo: Free tokens value
