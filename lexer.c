@@ -31,7 +31,7 @@ TokenType keyword_lookup(const char *str){
     if(strcmp(str, "for") == 0) return TOKEN_FOR;
     if(strcmp(str, "int") == 0) return TOKEN_INT;
     if(strcmp(str, "bool") == 0) return TOKEN_BOOL;
-    return TOKEN_VARIABLE;
+    return TOKEN_STR_VAR;
 }
 
 int free_tokens(TokenList *list){
@@ -72,7 +72,32 @@ int lex(const char *buffer, TokenList *list) {
             continue;
         } else if (isdigit(buffer[pointer])) {
             // Just look at it as a value
-            pointer++;
+
+            int start = pointer;
+            int decimal_flag = 0;
+            while (isdigit(buffer[pointer]) || buffer[pointer] == '.') {
+                if (buffer[pointer] == '.'){
+                    if (decimal_flag == 1) return 0;
+                    decimal_flag = 1;
+                }
+                pointer++;
+            }
+            int len = pointer - start;
+            if (len > 25) return 0;
+            // Temp size may be wrong
+            char temp[25];
+
+            //Make a check here because the size of the length might be too big;
+            memcpy(temp, &buffer[start], len);
+            temp[len] = '\0';
+            TokenType token;
+            if (decimal_flag == 0){
+                token = TOKEN_INT_VAR;
+            } else{
+                token = TOKEN_DEC_VAR;
+            }
+            int check = create_token(list, token, temp);
+            if (!check) return 0;
             continue;
         } else if (isblank(buffer[pointer])){
             pointer++;
@@ -89,8 +114,16 @@ int lex(const char *buffer, TokenList *list) {
             case ';':
                 token_type = TOKEN_SEMICOLON;
                 break;
+            case '{':
+                token_type = TOKEN_LEFT_BRACKET;
+                break;
+            case '}':
+                token_type = TOKEN_RIGHT_BRACK;
+                break;
         }
-        
+        char temp[2] = {buffer[pointer], '\0'};
+        int check = create_token(list, token_type, temp);
+        if (!check) return 0;
         pointer++;
 
     }

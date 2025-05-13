@@ -7,11 +7,11 @@
 #include <ctype.h>
 
 typedef enum {
-    TOKEN_SEMICOLON,
     TOKEN_DO,
     TOKEN_WHILE,
     TOKEN_FOR,
     TOKEN_IF,
+    TOKEN_SEMICOLON,
     TOKEN_LEFT_BRACKET,
     TOKEN_RIGHT_BRACK,
     TOKEN_LEFT_PARENTHESIS,
@@ -19,9 +19,11 @@ typedef enum {
     TOKEN_PLUS,
     TOKEN_MINUS,
     TOKEN_EQUAL,
-    TOKEN_VARIABLE,
     TOKEN_BOOL,
-    TOKEN_INT
+    TOKEN_INT,
+    TOKEN_STR_VAR,
+    TOKEN_INT_VAR,
+    TOKEN_DEC_VAR,
 } TokenType;
 
 typedef struct Token {

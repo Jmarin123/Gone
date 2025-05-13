@@ -10,7 +10,7 @@ $(TARGET): $(OBJ)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 run: $(TARGET)
-	./$(TARGET)
+	./$(TARGET) test.gone
 
 clean:
 	rm -f $(OBJ) $(TARGET)
