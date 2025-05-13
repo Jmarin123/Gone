@@ -78,6 +78,19 @@ int lex(const char *buffer, TokenList *list) {
             pointer++;
             continue;   
         }
+        TokenType token_type;
+        switch(buffer[pointer]) {
+            case '+':
+                token_type = TOKEN_PLUS;
+                break;
+            case '=':
+                token_type = TOKEN_EQUAL;
+                break;
+            case ';':
+                token_type = TOKEN_SEMICOLON;
+                break;
+        }
+        
         pointer++;
 
     }
