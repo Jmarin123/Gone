@@ -28,6 +28,7 @@ int create_token(TokenList *list, TokenType token_type, const char *str) {
 
 TokenType keyword_lookup(const char *str){
     if(strcmp(str, "if") == 0) return TOKEN_IF;
+    if(strcmp(str, "else") == 0) return TOKEN_ELSE;
     if(strcmp(str, "for") == 0) return TOKEN_FOR;
     if(strcmp(str, "int") == 0) return TOKEN_INT;
     if(strcmp(str, "bool") == 0) return TOKEN_BOOL;
@@ -99,11 +100,12 @@ int lex(const char *buffer, TokenList *list) {
             int check = create_token(list, token, temp);
             if (!check) return 0;
             continue;
-        } else if (isblank(buffer[pointer])){
+        } else if (isblank(buffer[pointer]) || isspace(buffer[pointer])){
             pointer++;
-            continue;   
+            continue;
         }
         TokenType token_type;
+        int skip = 0;
         switch(buffer[pointer]) {
             case '+':
                 token_type = TOKEN_PLUS;
@@ -120,7 +122,23 @@ int lex(const char *buffer, TokenList *list) {
             case '}':
                 token_type = TOKEN_RIGHT_BRACK;
                 break;
+            case '(':
+                token_type = TOKEN_LEFT_PARENTHESIS;
+                break;
+            case ')':
+                token_type = TOKEN_RIGHT_PARENTHESIS;
+                break;
+            case '"':
+                // need to make a special case here because what if we have  "variable"
+                break;
+            case '#':
+                // Comments!
+                while (buffer[pointer] != '\n' && buffer[pointer] != '\0') pointer++;
+                skip = 1;
+                break;
         }
+ 
+        if(skip) continue;
         char temp[2] = {buffer[pointer], '\0'};
         int check = create_token(list, token_type, temp);
         if (!check) return 0;
