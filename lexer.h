@@ -7,10 +7,15 @@
 #include <ctype.h>
 
 typedef enum {
+    // Reserved words
     TOKEN_DO,
     TOKEN_WHILE,
     TOKEN_FOR,
     TOKEN_IF,
+    TOKEN_ELSE,
+    TOKEN_INT,
+
+    // Reserved characters
     TOKEN_SEMICOLON,
     TOKEN_LEFT_BRACKET,
     TOKEN_RIGHT_BRACK,
@@ -20,7 +25,8 @@ typedef enum {
     TOKEN_MINUS,
     TOKEN_EQUAL,
     TOKEN_BOOL,
-    TOKEN_INT,
+
+    // Type Variable Reserve
     TOKEN_STR_VAR,
     TOKEN_INT_VAR,
     TOKEN_DEC_VAR,

@@ -49,6 +49,7 @@ int free_tokens(TokenList *list){
 
 int lex(const char *buffer, TokenList *list) {
     int result = init_token_list(list);
+    int line_no = 1;
     if (result == 0) {
         return 0;
     }
@@ -101,12 +102,14 @@ int lex(const char *buffer, TokenList *list) {
             if (!check) return 0;
             continue;
         } else if (isblank(buffer[pointer]) || isspace(buffer[pointer])){
+            if(buffer[pointer] == '\n') line_no++;
             pointer++;
             continue;
         }
         TokenType token_type;
         int skip = 0;
         switch(buffer[pointer]) {
+            //NEED ++ because MANE
             case '+':
                 token_type = TOKEN_PLUS;
                 break;
@@ -129,7 +132,12 @@ int lex(const char *buffer, TokenList *list) {
                 token_type = TOKEN_RIGHT_PARENTHESIS;
                 break;
             case '"':
-                // need to make a special case here because what if we have  "variable"
+                // need to make a special case here because what if we have "variable"
+                // Maybe let multiline strings exist?
+                pointer++;
+                int start = 0;
+                // Idea: mark the first " and if ti errors our then point to that time.
+                while (buffer[pointer] != '\n' && buffer[pointer] != '\0')
                 break;
             case '#':
                 // Comments!
