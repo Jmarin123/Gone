@@ -43,10 +43,6 @@ int free_tokens(TokenList *list){
     return 1;
 }
 
-// TokenType keynum_lookup() {
-
-// }
-
 int lex(const char *buffer, TokenList *list) {
     int result = init_token_list(list);
     int line_no = 1;
@@ -137,7 +133,9 @@ int lex(const char *buffer, TokenList *list) {
                 pointer++;
                 int start = 0;
                 // Idea: mark the first " and if ti errors our then point to that time.
-                while (buffer[pointer] != '\n' && buffer[pointer] != '\0')
+                while (buffer[pointer] != '\n' && buffer[pointer] != '\0') {
+
+                }
                 break;
             case '#':
                 // Comments!
