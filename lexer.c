@@ -131,11 +131,20 @@ int lex(const char *buffer, TokenList *list) {
                 // need to make a special case here because what if we have "variable"
                 // Maybe let multiline strings exist?
                 pointer++;
-                int start = 0;
+                if (buffer[pointer] == '"') {
+                    // Empty string uhh I go
+                }
+                int start = pointer;
+                int valid_string = 0;
                 // Idea: mark the first " and if ti errors our then point to that time.
                 while (buffer[pointer] != '\n' && buffer[pointer] != '\0') {
-
+                    if (buffer[pointer] == '"') {
+                        valid_string = 1;
+                        break;
+                    }
                 }
+                if (!valid_string) return 0;
+
                 break;
             case '#':
                 // Comments!
