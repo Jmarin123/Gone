@@ -15,6 +15,8 @@ typedef enum {
     TOKEN_ELSE,     // "Else"
     TOKEN_INT,      // "int"
     TOKEN_BOOL,     // "bool"
+    TOKEN_TRUE,     // "true"
+    TOKEN_FALSE,     // "false"
 
     // Reserved characters
     TOKEN_SEMICOLON,
