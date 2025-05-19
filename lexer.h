@@ -8,12 +8,13 @@
 
 typedef enum {
     // Reserved words
-    TOKEN_DO,
-    TOKEN_WHILE,
-    TOKEN_FOR,
-    TOKEN_IF,
-    TOKEN_ELSE,
-    TOKEN_INT,
+    TOKEN_DO,       // "Do"
+    TOKEN_WHILE,    // "While"
+    TOKEN_FOR,      // "For"
+    TOKEN_IF,       // "If"
+    TOKEN_ELSE,     // "Else"
+    TOKEN_INT,      // "int"
+    TOKEN_BOOL,     // "bool"
 
     // Reserved characters
     TOKEN_SEMICOLON,
@@ -24,7 +25,7 @@ typedef enum {
     TOKEN_PLUS,
     TOKEN_MINUS,
     TOKEN_EQUAL,
-    TOKEN_BOOL,
+    TOKEN_INCREMENT_OP, // ++
 
     // Type Variable Reserve
     TOKEN_STR_VAR,
