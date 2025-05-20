@@ -13,8 +13,15 @@ int main(int argc, char** argv) {
     TokenList tokens;
     if (!lex(buffer, &tokens)){
         free(buffer);
+        if (tokens.tokens)  free_tokens(&tokens);
         return EXIT_FAILURE;
     }
+
+    // for (size_t i = 0; i < list->current_index; i++){
+    //     printf("Token: %s has value %d\n", list->tokens[i].value, list->tokens[i].type);
+    // }
+    parser(&tokens);
+    free_tokens(&tokens);
     free(buffer);
     //free(tokens.tokens);
     //Todo: ast = parser(&tokens)

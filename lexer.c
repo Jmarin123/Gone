@@ -14,13 +14,16 @@ int init_token_list(TokenList *list){
 
 int create_token(TokenList *list, TokenType token_type, const char *str) {
     // May need a check function to make sure we have space hehe.
+    // Like if we go ove the capacity
     Token *token = &(list->tokens[list->current_index++]);
     token->type = token_type;
 
     size_t len = strlen(str);
     token->value = malloc(len + 1);
-    if (!token->value) return 0;
-
+    if (!token->value) {
+        perror("Malloc failed");
+        return 0;
+    }
     memcpy(token->value, str, len);
     token->value[len] = '\0';
     return 1;
@@ -47,11 +50,10 @@ int free_tokens(TokenList *list){
 }
 
 int lex(const char *buffer, TokenList *list) {
-    int result = init_token_list(list);
-    int line_no = 1;
-    if (result == 0) {
+    if (init_token_list(list) == 0) {
         return 0;
     }
+    int line_no = 1;
     size_t pointer = 0;
     while (buffer[pointer] != '\0') {
         if (isalpha(buffer[pointer])){
@@ -163,9 +165,6 @@ int lex(const char *buffer, TokenList *list) {
         pointer++;
 
     }
-    for (size_t i = 0; i < list->current_index; i++){
-        printf("Token: %s has value %d\n", list->tokens[i].value, list->tokens[i].type);
-    }
-    free_tokens(list);
+
     return 1;
 }
