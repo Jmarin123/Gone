@@ -6,5 +6,6 @@
 #include <string.h>
 #include "utility.h"
 #include "lexer.h"
+#include "parser.h"
 
 #endif
