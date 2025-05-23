@@ -1,5 +1,9 @@
 #include "lexer.h"
 
+
+// All this work might go to waste
+// pain..
+
 int init_token_list(TokenList *list){
     // Add a set init variable from header, 128 seems arbitrary i guess.
     list->capacity = 128;
