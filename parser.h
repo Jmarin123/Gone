@@ -6,5 +6,6 @@
 #include "lexer.h"
 
 // For prototyping i'll start using bison.
+
 int parsewrapper();
 #endif
