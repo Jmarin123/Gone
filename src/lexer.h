@@ -16,7 +16,9 @@ typedef enum {
     TOKEN_INT,      // "int"
     TOKEN_BOOL,     // "bool"
     TOKEN_TRUE,     // "true"
-    TOKEN_FALSE,     // "false"
+    TOKEN_FALSE,    // "false"
+    TOKEN_RETURN,   // "return"
+    TOKEN_EXIT,     // "exit"
 
     // Reserved characters
     TOKEN_SEMICOLON,
@@ -27,13 +29,13 @@ typedef enum {
     TOKEN_PLUS,
     TOKEN_MINUS,
     TOKEN_EQUAL,
-    TOKEN_INCREMENT_OP, // ++
-    TOKEN_DECREMENT_OP, // ++
-    TOKEN_EQUAL_INCREMENT_OP, // +=
-    TOKEN_EQUAL_DECREMENT_OP, // -=
-    TOKEN_EQUALITY_OP, // ==
+    TOKEN_INCREMENT_OP,         // ++
+    TOKEN_DECREMENT_OP,         // ++
+    TOKEN_EQUAL_INCREMENT_OP,   // +=
+    TOKEN_EQUAL_DECREMENT_OP,   // -=
+    TOKEN_EQUALITY_OP,          // ==
 
-    // Type Variable Reserve
+    // Variable Type Reserve
     TOKEN_STR_VAR,
     TOKEN_INT_VAR,
     TOKEN_DEC_VAR,

@@ -41,6 +41,8 @@ TokenType keyword_lookup(const char *str){
     if(strcmp(str, "bool") == 0) return TOKEN_BOOL;
     if(strcmp(str, "true") == 0) return TOKEN_TRUE;
     if(strcmp(str, "false") == 0) return TOKEN_FALSE;
+    if(strcmp(str, "exit") == 0) return TOKEN_EXIT;
+    if(strcmp(str, "return") == 0) return TOKEN_RETURN;
 
     return TOKEN_STR_VAR;
 }
