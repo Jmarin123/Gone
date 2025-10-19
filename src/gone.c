@@ -13,14 +13,15 @@ int main(int argc, char** argv) {
     TokenList tokens;
     if (!lex(buffer, &tokens)){
         free(buffer);
-        if (tokens.tokens)  free_tokens(&tokens);
+        if (tokens.tokens) free_tokens(&tokens);
         return EXIT_FAILURE;
     }
-
+    for (size_t x = 0; x < tokens.current_index; x++) {
+        printf("%s\n", tokens.tokens[x].value);
+    }
     // parser(&tokens);
-    // free_tokens(&tokens);
-    // free(buffer);
-    //free(tokens.tokens);
+    free_tokens(&tokens);
+    free(buffer);
     //Todo: ast = parser(&tokens)
     //Todo: Maybe mips interpreted? Maybe byte code.
     //Todo: Free tokens value

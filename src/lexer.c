@@ -100,7 +100,7 @@ int lex(const char *buffer, TokenList *list) {
             TokenType token;
             if (decimal_flag == 0){
                 token = TOKEN_INT_VAR;
-            } else{
+            } else {
                 token = TOKEN_DEC_VAR;
             }
             int check = create_token(list, token, temp);
@@ -113,10 +113,30 @@ int lex(const char *buffer, TokenList *list) {
         }
         TokenType token_type;
         int skip = 0;
+        int two_letter_token = 0;
         switch(buffer[pointer]) {
             //NEED ++ because MANE
             case '+':
-                token_type = TOKEN_PLUS;
+                if (buffer[pointer+1] == '+') {
+                    token_type = TOKEN_INCREMENT_OP;
+                    two_letter_token = 1;
+                } else if (buffer[pointer+1] == '=') {
+                    token_type = TOKEN_EQUAL_INCREMENT_OP;
+                    two_letter_token = 1;
+                } else {
+                    token_type = TOKEN_PLUS;
+                }
+                break;
+            case '-':
+                if (buffer[pointer+1] == '-') {
+                    token_type = TOKEN_DECREMENT_OP;
+                    two_letter_token = 1;
+                } else if (buffer[pointer+1] == '=') {
+                    token_type = TOKEN_EQUAL_DECREMENT_OP;
+                    two_letter_token = 1;
+                } else {
+                    token_type = TOKEN_MINUS;
+                }
                 break;
             case '=':
                 token_type = TOKEN_EQUAL;
@@ -145,7 +165,7 @@ int lex(const char *buffer, TokenList *list) {
                 }
                 //int start = pointer;
                 int valid_string = 0;
-                // Idea: mark the first " and if ti errors our then point to that time.
+                // Idea: mark the first " and if it errors our then point to that time.
                 while (buffer[pointer] != '\n' && buffer[pointer] != '\0') {
                     if (buffer[pointer] == '"') {
                         valid_string = 1;
@@ -161,13 +181,19 @@ int lex(const char *buffer, TokenList *list) {
                 skip = 1;
                 break;
         }
- 
-        if(skip) continue;
-        char temp[2] = {buffer[pointer], '\0'};
-        int check = create_token(list, token_type, temp);
+
+        if (skip) continue;
+        int check;
+        if (two_letter_token) {
+            char temp[3] = {buffer[pointer], buffer[pointer+1], '\0'};
+            check = create_token(list, token_type, temp);
+            pointer++;
+        } else {
+            char temp[2] = {buffer[pointer], '\0'};
+            check = create_token(list, token_type, temp);
+        }
         if (!check) return 0;
         pointer++;
-
     }
 
     return 1;

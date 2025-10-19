@@ -28,6 +28,10 @@ typedef enum {
     TOKEN_MINUS,
     TOKEN_EQUAL,
     TOKEN_INCREMENT_OP, // ++
+    TOKEN_DECREMENT_OP, // ++
+    TOKEN_EQUAL_INCREMENT_OP, // +=
+    TOKEN_EQUAL_DECREMENT_OP, // -=
+    TOKEN_EQUALITY_OP, // ==
 
     // Type Variable Reserve
     TOKEN_STR_VAR,
