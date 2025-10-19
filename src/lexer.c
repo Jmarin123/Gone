@@ -143,7 +143,7 @@ int lex(const char *buffer, TokenList *list) {
                 if (buffer[pointer] == '"') {
                     // Empty string uhh I go
                 }
-                int start = pointer;
+                //int start = pointer;
                 int valid_string = 0;
                 // Idea: mark the first " and if ti errors our then point to that time.
                 while (buffer[pointer] != '\n' && buffer[pointer] != '\0') {
