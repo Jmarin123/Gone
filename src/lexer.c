@@ -18,7 +18,7 @@ int init_token_list(TokenList *list){
 
 int create_token(TokenList *list, TokenType token_type, const char *str) {
     // May need a check function to make sure we have space hehe.
-    // Like if we go ove the capacity
+    // Like if we go over the capacity
     Token *token = &(list->tokens[list->current_index++]);
     token->type = token_type;
 
@@ -95,8 +95,6 @@ int lex(const char *buffer, TokenList *list) {
             if (len > 25) return 0;
             // Temp size may be wrong
             char temp[25];
-
-            //Make a check here because the size of the length might be too big;
             memcpy(temp, &buffer[start], len);
             temp[len] = '\0';
             TokenType token;
@@ -117,7 +115,6 @@ int lex(const char *buffer, TokenList *list) {
         int skip = 0;
         int two_letter_token = 0;
         switch(buffer[pointer]) {
-            //NEED ++ because MANE
             case '+':
                 if (buffer[pointer+1] == '+') {
                     token_type = TOKEN_INCREMENT_OP;
@@ -141,7 +138,12 @@ int lex(const char *buffer, TokenList *list) {
                 }
                 break;
             case '=':
-                token_type = TOKEN_EQUAL;
+                if (buffer[pointer+1] == '=') {
+                    token_type = TOKEN_EQUALITY_OP;
+                    two_letter_token = 1;
+                } else {
+                    token_type = TOKEN_EQUAL;
+                }
                 break;
             case ';':
                 token_type = TOKEN_SEMICOLON;
@@ -161,9 +163,11 @@ int lex(const char *buffer, TokenList *list) {
             case '"':
                 // need to make a special case here because what if we have "variable"
                 // Maybe let multiline strings exist?
+                // TODO: ADD STRING VALUE
+                size_t start_point = pointer;
                 pointer++;
                 if (buffer[pointer] == '"') {
-                    // Empty string uhh I go
+                    // pass
                 }
                 //int start = pointer;
                 int valid_string = 0;
@@ -173,6 +177,7 @@ int lex(const char *buffer, TokenList *list) {
                         valid_string = 1;
                         break;
                     }
+                    pointer++;
                 }
                 if (!valid_string) return 0;
 
