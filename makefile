@@ -1,8 +1,9 @@
 CC = gcc
-# Add a -Werror when doing github tests
+# TODO: Add a -Werror when doing github tests
 CFLAGS = -Wall -Wextra -std=c11 -g
 BUILD_DIR := ./build
 SRC_DIRS := ./src
+TEST_DIRS := ./tests
 TARGET_EXEC := gone
 SRCS := $(wildcard $(SRC_DIRS)/*.c)
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
@@ -26,10 +27,11 @@ $(BUILD_DIR)/%.c.o: %.c
 	$(call MKDIR_P,$(dir $@))
 	$(CC) $(CFLAGS) -c $< -o $@
 
-INPUT ?= test.gone
-run: $(BUILD_DIR)/$(TARGET_EXEC)
-	@echo "Running $(TARGET_EXEC) with input: $(INPUT)"
-	$(BUILD_DIR)/$(TARGET_EXEC) $(INPUT)
+# Fix this so it runs test
+# INPUT ?= $(TEST_DIRS)
+# test: $(BUILD_DIR)/$(TARGET_EXEC)
+# 	@echo "Running $(TARGET_EXEC) with input: $(INPUT)"
+# 	$(BUILD_DIR)/$(TARGET_EXEC) $(INPUT)
 
 clean:
 	$(RM)

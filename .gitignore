@@ -2,6 +2,5 @@ gone
 *.o
 .vscode
 .txt
-*.gone
 *.exe
 build
