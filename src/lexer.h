@@ -35,7 +35,7 @@ typedef enum {
     TOKEN_EQUAL_DECREMENT_OP,   // -=
     TOKEN_EQUALITY_OP,          // ==
 
-    // Variable Type Reserve
+    // Reserved variable types
     TOKEN_STR_VAR,
     TOKEN_INT_VAR,
     TOKEN_DEC_VAR,
