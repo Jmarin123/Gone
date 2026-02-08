@@ -1,5 +1,6 @@
 #include "unity.h"
 #include "lexer.h"
+#include "utility.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -11,25 +12,21 @@ void tearDown() {
 
 }
 
-void simple_lexer() {
+void init_token_list_test() {
+    TokenList tokens;
+    int res = init_token_list(&tokens);
+    TEST_ASSERT(res == 1);
+    TEST_ASSERT_EQUAL_INT(tokens.capacity, 128);
+    TEST_ASSERT_EQUAL_INT(tokens.current_index, 0);
+    free_tokens(&tokens);
     return;
 }
 
+// If we wanna access gone files use test/<File name>
+
 int main(void) {
     UNITY_BEGIN();
-    RUN_TEST(simple_lexer);
+    RUN_TEST(init_token_list_test);
     UNITY_END();
-    // FILE *fptr;
-    // fptr = fopen("simple_int_assignment.gone", "r");
-    // if (fptr == NULL) {
-    //     printf("Error: Unable to open the file.\n");
-    //     exit(1);
-    // }
-    // char data[100];
-    // while (fgets(data, 100, fptr) != NULL) {
-    //     printf("%s", data);
-    // }
-
-    // fclose(fptr);
     return 0;
 }
