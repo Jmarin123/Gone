@@ -4,7 +4,7 @@
 // All this work might go to waste
 // pain..
 
-int init_token_list(TokenList *list){
+int init_token_list(TokenList *list) {
     // Add a set init variable from header, 128 seems arbitrary i guess.
     list->capacity = 128;
     list->current_index = 0;
@@ -33,7 +33,7 @@ int create_token(TokenList *list, TokenType token_type, const char *str) {
     return 1;
 }
 
-TokenType keyword_lookup(const char *str){
+TokenType keyword_lookup(const char *str) {
     if(strcmp(str, "if") == 0) return TOKEN_IF;
     if(strcmp(str, "else") == 0) return TOKEN_ELSE;
     if(strcmp(str, "for") == 0) return TOKEN_FOR;
@@ -43,11 +43,13 @@ TokenType keyword_lookup(const char *str){
     if(strcmp(str, "false") == 0) return TOKEN_FALSE;
     if(strcmp(str, "exit") == 0) return TOKEN_EXIT;
     if(strcmp(str, "return") == 0) return TOKEN_RETURN;
+    if(strcmp(str, "do") == 0) return TOKEN_DO;
+    if(strcmp(str, "while") == 0) return TOKEN_WHILE;
 
     return TOKEN_STR_VAR;
 }
 
-int free_tokens(TokenList *list){
+int free_tokens(TokenList *list) {
     for(size_t i = 0; i < list->current_index; i++){
         free(list->tokens[i].value);
     }
