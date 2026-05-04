@@ -50,14 +50,18 @@ TokenType keyword_lookup(const char *str) {
 }
 
 int free_tokens(TokenList *list) {
+    if (!list || !list->tokens) return 0;
     for(size_t i = 0; i < list->current_index; i++){
         free(list->tokens[i].value);
+        list->tokens[i].value = NULL;
     }
     free(list->tokens);
+    list->tokens = NULL;
     return 1;
 }
 
 int lex(const char *buffer, TokenList *list) {
+    // Should check if token list has a value
     if (init_token_list(list) == 0) {
         return 0;
     }

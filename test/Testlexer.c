@@ -4,22 +4,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void setUp() {
+static TokenList global_tokens;
 
+void setUp() {
+    TEST_ASSERT_EQUAL_INT_MESSAGE(1, init_token_list(&global_tokens), "setUp: init_token_list failed");
 }
 
 void tearDown() {
-
+    TEST_ASSERT_EQUAL_INT_MESSAGE(1, free_tokens(&global_tokens), "tearDown: free_token failed");
 }
 
 void init_token_list_test() {
-    TokenList tokens;
-    int res = init_token_list(&tokens);
-    TEST_ASSERT(res == 1);
-    TEST_ASSERT_EQUAL_INT(tokens.capacity, 128);
-    TEST_ASSERT_EQUAL_INT(tokens.current_index, 0);
-    res = free_tokens(&tokens);
-    TEST_ASSERT(res == 1);
+    TEST_ASSERT_EQUAL_INT_MESSAGE(128, global_tokens.capacity, "init_token_list_test: token list capacity is not 128");
+    TEST_ASSERT_EQUAL_INT_MESSAGE(0, global_tokens.current_index, "init_token_list_test: token list current index is not 0");
     return;
 }
 
@@ -47,13 +44,13 @@ void keyword_lookup_test() {
     return;
 }
 
-// void create_token_test(){
-//     TokenList tokens;
-//     int res = init_token_list(&tokens);
-//     TEST_ASSERT(res == 1);
-//     create_token(&tokens, )
-    
-// }
+void create_token_test(){
+    TEST_ASSERT_EQUAL_INT_MESSAGE(1, create_token(&global_tokens, TOKEN_IF, "if"), "unable to create 'if' token");
+    TEST_ASSERT_EQUAL_INT_MESSAGE(1, global_tokens.current_index, "create_token_test: current index did not increase after creating token");
+    TEST_ASSERT_EQUAL_STRING("if", global_tokens.tokens[0].value);
+    return;
+}
+
 
 // If we wanna access gone files use test/<File name>
 
@@ -61,6 +58,7 @@ int main(void) {
     UNITY_BEGIN();
     RUN_TEST(init_token_list_test);
     RUN_TEST(keyword_lookup_test);
+    RUN_TEST(create_token_test);
     UNITY_END();
     return 0;
 }
