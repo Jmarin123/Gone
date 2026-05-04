@@ -21,6 +21,11 @@ char *file_to_string(const char *file) {
 
     fseek(f, 0, SEEK_END);
     long length = ftell(f);
+    if (length == -1) {
+        perror("ftell");
+        fclose(f);
+        return NULL;
+    }
     fseek(f, 0, SEEK_SET);
     buffer = malloc(length + 1);
 
