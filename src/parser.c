@@ -1,11 +1,6 @@
 #include "parser.h"
 
-// int ast(TokenList *list) {
-    
-//     return 1;
-// }
-
-
-int parsewrapper(){
-    return 0;
+int ast(TokenList *list) {
+    printf("%lu", list->current_index);
+    return 1;
 }

@@ -16,9 +16,9 @@ int main(int argc, char** argv) {
         if (tokens.tokens) free_tokens(&tokens);
         return EXIT_FAILURE;
     }
-    for (size_t x = 0; x < tokens.current_index; x++) {
-        printf("%s\n", tokens.tokens[x].value);
-    }
+    // for (size_t x = 0; x < tokens.current_index; x++) {
+    //     printf("%s\n", tokens.tokens[x].value);
+    // }
     // parser(&tokens);
     free_tokens(&tokens);
     free(buffer);
