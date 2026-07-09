@@ -7,4 +7,14 @@
 
 int ast();
 
+typedef struct Parser {
+    TokenList *tokenlist;
+    int current;
+} Parser;
+
+
+Token *peak(Parser *p);
+
+Token *consume(Parser *p);
+
 #endif

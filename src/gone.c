@@ -19,7 +19,10 @@ int main(int argc, char** argv) {
     // for (size_t x = 0; x < tokens.current_index; x++) {
     //     printf("%s\n", tokens.tokens[x].value);
     // }
-    // parser(&tokens);
+    Parser p;
+    p.tokenlist = &tokens;
+    p.current = 0;
+    ast(&p);
     free_tokens(&tokens);
     free(buffer);
     //Todo: ast = parser(&tokens)

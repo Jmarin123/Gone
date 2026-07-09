@@ -1,11 +1,14 @@
 #include "parser.h"
 
-int ast(TokenList *list) {
-    printf("%lu", list->current_index);
+int ast(Parser *p) {
+    printf("%s\n", peak(p)->value);
     return 1;
 }
 
-int peak(Parser p) {
-    int peak_value = p->
-    for 
+Token *peak(Parser *p) {
+    return &p->tokenlist->tokens[p->current];
+}
+
+Token *consume(Parser *p) {
+    return &p->tokenlist->tokens[p->current++];
 }
