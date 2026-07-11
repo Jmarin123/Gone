@@ -39,6 +39,8 @@ typedef enum {
     TOKEN_STR_VAR,
     TOKEN_INT_VAR,
     TOKEN_DEC_VAR,
+
+    TOKEN_EOF,
 } TokenType;
 
 typedef struct Token {

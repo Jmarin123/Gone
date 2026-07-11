@@ -9,12 +9,14 @@ int ast();
 
 typedef struct Parser {
     TokenList *tokenlist;
-    int current;
+    size_t current;
 } Parser;
 
 
 Token *peak(Parser *p);
 
 Token *consume(Parser *p);
+
+Token *expect(Parser *p, TokenType type);
 
 #endif

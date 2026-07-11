@@ -208,6 +208,6 @@ int lex(const char *buffer, TokenList *list) {
         if (!check) return 0;
         pointer++;
     }
-
+    create_token(list, TOKEN_EOF, "EOF");
     return 1;
 }
