@@ -55,8 +55,14 @@ typedef struct TokenList {
 } TokenList;
 
 int init_token_list(TokenList *list);
+
 int create_token(TokenList *list, TokenType token_type, const char *str);
+
 int lex(const char *buffer, TokenList *list);
+
 TokenType keyword_lookup(const char *str);
+
 int free_tokens(TokenList *list);
+
+char *token_to_string(TokenType token);
 #endif

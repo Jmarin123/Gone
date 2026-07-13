@@ -34,6 +34,7 @@ int create_token(TokenList *list, TokenType token_type, const char *str) {
 }
 
 TokenType keyword_lookup(const char *str) {
+    // Wonder if i can turn this into switch
     if(strcmp(str, "if") == 0) return TOKEN_IF;
     if(strcmp(str, "else") == 0) return TOKEN_ELSE;
     if(strcmp(str, "for") == 0) return TOKEN_FOR;
@@ -47,6 +48,34 @@ TokenType keyword_lookup(const char *str) {
     if(strcmp(str, "while") == 0) return TOKEN_WHILE;
 
     return TOKEN_STR_VAR;
+}
+
+char *token_to_string(TokenType token) {
+    switch (token)
+    {
+    case TOKEN_IF:
+        return "if";
+    case TOKEN_ELSE:
+        return "else";
+    case TOKEN_FOR:
+        return "for";
+    case TOKEN_INT:
+        return "int";
+    case TOKEN_BOOL:
+        return "bool";
+    case TOKEN_TRUE:
+        return "true";
+    case TOKEN_FALSE:
+        return "false";
+    case TOKEN_EXIT:
+        return "exit";
+    case TOKEN_DO:
+        return "do";
+    case TOKEN_WHILE:
+        return "while";
+    default:
+        return "";
+    }
 }
 
 int free_tokens(TokenList *list) {

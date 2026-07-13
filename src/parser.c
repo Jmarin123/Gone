@@ -1,7 +1,7 @@
 #include "parser.h"
 
 int ast(Parser *p) {
-    Token *top_val = expect(p, TOKEN_DEC_VAR);
+    Token *top_val = expect(p, TOKEN_IF);
     if (top_val == NULL) {
         printf("RAAHH\n");
         return 0;
@@ -22,9 +22,10 @@ Token *consume(Parser *p) {
 
 Token *expect(Parser *p, TokenType type) {
     Token *t = consume(p);
-    // TODO: add 
+    // TODO: cool if we add line number like:
+    // "Expected if got test on line 13"
     if (t->type != type) {
-        fprintf(stderr, "Expected ? got %s\n", type, t->value);
+        fprintf(stderr, "Expected %s got %s\n", token_to_string(type), t->value);
         return NULL;
     }
     return t;
