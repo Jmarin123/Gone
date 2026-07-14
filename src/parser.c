@@ -1,12 +1,13 @@
 #include "parser.h"
 
-int ast(Parser *p) {
-    Token *top_val = expect(p, TOKEN_IF);
-    if (top_val == NULL) {
-        printf("RAAHH\n");
-        return 0;
+Node *ast(Parser *p) {
+    return statement(p);
+}
+
+Node *statement(Parser *p) {
+    switch(peak(p)->type) {
+        // Something something look through a switch
     }
-    return 1;
 }
 
 Token *peak(Parser *p) {
